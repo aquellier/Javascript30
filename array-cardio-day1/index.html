@@ -47,7 +47,15 @@ const inventors = [
       return total + (inventor.passed - inventor.year) / inventors.length
       // At first we don't have a total so it's equal to undefined, we have to write zero as a default value
     }, 0);
-    console.log(averageAge);
+
+    // Sort inventors by years lived
+    const oldest = inventors.sort((firstPerson, secondPerson) =>
+      (firstPerson.passed - firstPerson.year) >
+      (secondPerson.passed - secondPerson.year) ? 1 : -1
+    );
+    console.table(oldest);
+
+
   </script>
 </body>
 </html>
