@@ -55,7 +55,20 @@ const inventors = [
     );
     console.table(oldest);
 
+    // Create a list of boulevards in Paris that containt 'de' in the name
+    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // First get the dom elements out of the page
+    const category = document.querySelector('.mw-category');
+    // You can call querySelector on any dom element, not just document
+    const links = Array.from(category.querySelectorAll('a'));
+
+    // We just get the text of the link
+    const de = links
+                  .map(link => link.textContent)
+                  .filter(boulevardName => boulevardName.includes('de'));
+
+    // Sort the list of people
   </script>
 </body>
 </html>
