@@ -22,6 +22,7 @@
     let lastX = 0;
     let lastY = 0;
     let hue = 0;
+    let direction = true;
 
     function draw(e) {
       if (!isDrawing) return; // stop the function from runnong when they are not moused down
@@ -35,6 +36,19 @@
       ctx.stroke();
       // update lastX and lastY to start from the actual click point
       [lastX, lastY] = [e.offsetX, e.offsetY];
+      // will update hue each time we draw, thus changing color progessrively as we mousedown
+      hue++;
+      if (hue >= 360) {
+        hue = 0;
+      }
+      if (ctx.lineWidth >= 50 || ctx.lineWidth <= 1) {
+        direction = !direction;
+      }
+      if (direction) {
+        ctx.lineWidth++;
+      } else {
+        ctx.lineWidth--;
+      }
 
 
     }
