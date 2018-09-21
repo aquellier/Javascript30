@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Hold Shift to Check Multiple Checkboxes</title>
+</head>
+<body>
+   <!--
+   The following is a common layout you would see in an email client.
+   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
+  -->
+  <div class="inbox">
+    <div class="item">
+      <input type="checkbox">
+      <p>This is an inbox layout.</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Check one item</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Hold down your Shift key</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Check a lower item</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Everything inbetween should also be set to checked</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Try do it without any libraries</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Just regular JavaScript</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Good Luck!</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Don't forget to tweet your result!</p>
+    </div>
+  </div>
+
+<script>
+  // 1. Select all the checkboxes
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+  // 4. Need to put the first one in a variable to have a range
+  let lastChecked;
+
+  // 3. Make the function handlecheck
+  function handleCheck(e) {
+
+    // 6. If the shift key is down and user is checking the box
+    let inBetween = false;
+    if (e.shiftKey && this.checked) {
+    // 7. loop over every single checkboxes and check if it's in between
+      checkboxes.forEach(checkbox => {
+        // 8. Set inBetweet to true if we are in between
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween;
+        }
+
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      });
+    }
+
+    // 5. update the lastChecked variable
+    lastChecked = this;
+
+  }
+
+  // 2. Listen when one of them gets clicked or changed
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
+
+
+</script>
+</body>
+</html>
